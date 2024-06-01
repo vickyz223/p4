@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input[type="text"], textarea, button
+{
+    font-family: "Open Sans", sans-serif;
+}
+
+
+/* ===================== HEADER ==================== */
+h1 {
+  font-size: x-large;
+}
+
+header {
+  width: 100%;
+  padding: 0.5rem 5rem;
+
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ======= FORM ======= */
+#addCard {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardHeader {
+  display: flex; 
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+
+  position: relative;
+}
+
+#cardTitle,
+#cardColor {
+  background-color: var(--nav-input);
+  color: var(--color-txt);
+
+  border: 0;
+  height: 100%;
+}
+
+#cardTitle {
+  width: 20em;
+}
+
+#cardColor {
+  width: 8rem;
+}
+
+#addButton {
+  background-color: lightgreen;
+  color: black;
+
+  padding: 0.25rem 1rem;
+  height: 100%;
+}
+
+#darkMode {
+  width: 30px;
+  height: 30px;
+  background-image: var(--background-image-url);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 870px) and (min-width: 551px) {
+  header {
+    padding: 0.5rem 2rem;
+  }
+
+  #addCard {
+    display: flex;
+    width: clamp(150px, 70%, 70%);
+  }
+
+  #cardTitle {
+    flex-grow: 2;
+  }
+
+  #cardColor,
+  #addButton,
+  #darkMode {
+    flex-grow: 1;
+  }
+
+  #darkMode {
+    min-width: 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  #addCard {
+    flex-direction: column;
+    height: auto;
+    flex-grow: 1;
+  }
+
+  #addCard > * {
+    min-height: 30px;
+  }
+}
+
+/* ===================== BOARD ==================== */
+
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--color-bg);
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  width: 100%;
+  flex-grow: 1;
+  padding: 0 5rem;
+}
+
+@media (max-width: 768px) {
+  #board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 0 1rem;
+  }
+
+  .column {
+    max-width: 500px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+    #board {
+        padding: 0;
+    }
+}
+
+#board .column:nth-child(odd) {
+  background-color: var(--color-fg);
+}
+
+.column {
+  padding: 0 0.5rem;
+  overflow: hidden;
+  padding-bottom: 3rem;
+  max-height: 100%;
+}
+
+.card {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+
+  border-radius: 0.5rem;
+}
+
+.title {
+  width: 80%;
+}
+
+.card > * {
+  padding: 0.5rem;
+}
+
+.columnTitle {
+  padding: 1rem;
+  color: var(--color-txt);
+  white-space: nowrap;
+}
+
+.buttons {
+  display: none;
+  flex-wrap: nowrap;
+
+  position: absolute;
+  right: 0;
+}
+
+.card:hover .buttons {
+  display: flex;
+}
+
+/* ===================== DARK MODE ==================== */
+
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-fg: #f0f0f0;
+  --color-txt: black;
+
+  --nav-bg: #202020;
+  --nav-text: white;
+  --nav-input: white;
+
+  --background-image-url: url("icons/moon.svg");
+}
+
+[data-theme="dark"] {
+  --color-bg: #181818;
+  --color-fg: #404040;
+  --color-txt: #e4e6eb;
+
+  --nav-bg: #000000;
+  --nav-text: #e4e6eb;
+  --nav-input: #3a3b3c;
+
+  --background-image-url: url("icons/sun.svg");
+}
